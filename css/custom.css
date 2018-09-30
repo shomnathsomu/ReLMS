@@ -1,0 +1,18 @@
+.nav-pills>li.active>a{
+    color: #fff;
+    border-radius: 0px;
+    background-color: #006442;
+}
+.nav-pills>li.active>a:hover{
+    background-color: #5cb85c;
+}
+div.container.admin_header, div.container-fluid.main_header {
+    background-color: #006442;
+}
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>li>a:hover{
+    color: #fff;
+}
+.navbar-default .navbar-nav>.active>a{
+	color: #fff;
+    background-color: #5cb85c;
+}
