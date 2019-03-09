@@ -16,7 +16,7 @@
 					<img src="images/logo.jpg" class="img-responsive" />
 				</div>
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="text-align: right;">
-					Welcome to Learn ReLM!!
+					WELCOME TO LEARN THE REPOSITORY OF E-LEARNING MATERIALS
 				</div>
 			</div>
 

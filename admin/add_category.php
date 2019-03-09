@@ -117,15 +117,7 @@
 					<?php echo $msg; echo $msg_image; ?>
 					<form id="form_add_category" class="form-horizontal" rol="form" method="post" action='<?php echo $_SERVER["PHP_SELF"]; ?>' enctype="multipart/form-data">
 						<input type="hidden" name="category_id" value="<?php echo $category_id; ?>">
-						<input type="hidden" name="category_image" value="<?php echo $category_image; ?>">
-						<div style="margin-bottom: 25px;" class="input-group">
-							<span class="input-group-addon">Category Name</span>
-							<input id="text_category_name" type="text" class="form-control" name="text_category_name" value="<?php echo $category_name; ?>">
-						</div> 
-						<div style="margin-bottom: 25px;" class="input-group">
-							<span class="input-group-addon">Category Order</span>
-							<input id="text_category_order" type="text" class="form-control" name="text_category_order" value="<?php echo $category_order; ?>">
-						</div> 
+						<input type="hidden" name="category_image" value="<?php echo $category_image; ?>"> 
 						<div style="margin-bottom: 25px;" class="input-group">
 							<span class="input-group-addon">Top Category</span>
 							<select id="top_category_id" name="top_category_id" class="form-control">
@@ -143,6 +135,14 @@
 								 ?>
 							</select>
 						</div> 
+						<div style="margin-bottom: 25px;" class="input-group">
+							<span class="input-group-addon">Category Name</span>
+							<input id="text_category_name" type="text" class="form-control" name="text_category_name" value="<?php echo $category_name; ?>">
+						</div> 
+						<div style="margin-bottom: 25px;" class="input-group">
+							<span class="input-group-addon">Category Order</span>
+							<input id="text_category_order" type="text" class="form-control" name="text_category_order" value="<?php echo $category_order; ?>">
+						</div>
 						<div style="margin-bottom: 25px;" class="input-group">
 							<span class="input-group-addon">Category Image</span>
 							<input id="text_category_image" type="file" class="form-control" name="text_category_image" value="<?php echo $category_image; ?>">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2018 at 11:21 AM
+-- Generation Time: Mar 06, 2019 at 02:45 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -61,11 +61,8 @@ CREATE TABLE `table_category` (
 --
 
 INSERT INTO `table_category` (`category_id`, `category_name`, `category_image`, `category_order`, `top_category_id`) VALUES
-(65, 'HTML5', 'html5.png', 1, 28),
-(66, 'CSS3', 'css3.jpg', 2, 28),
-(67, 'JavaScript', 'javascript.png', 3, 28),
-(68, 'SQL', 'SQL.png', 1, 27),
-(69, 'C programming', 'c-prog.png', 1, 29);
+(68, 'HTML5', 'html5.png', 1, 34),
+(69, 'CSS3', 'css3.jpg', 2, 34);
 
 -- --------------------------------------------------------
 
@@ -77,8 +74,15 @@ CREATE TABLE `table_lecture` (
   `lecture_id` int(11) NOT NULL,
   `lecture_content` longtext COLLATE utf8_unicode_ci NOT NULL,
   `lecture_order` int(11) NOT NULL,
-  `lecture_sub_category` int(11) NOT NULL
+  `sub_category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `table_lecture`
+--
+
+INSERT INTO `table_lecture` (`lecture_id`, `lecture_content`, `lecture_order`, `sub_category_id`) VALUES
+(4, '<p><u><em><strong>Hello World!</strong></em></u></p>', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -98,21 +102,10 @@ CREATE TABLE `table_sub_category` (
 --
 
 INSERT INTO `table_sub_category` (`sub_category_id`, `sub_category_name`, `sub_category_order`, `category_id`) VALUES
-(1, 'Lecture 1: Introduction to HTML', 1, 65),
-(2, 'Lecture 2: HTML Editors', 2, 65),
-(3, 'Lecture 3: HTML Basics', 3, 65),
-(4, 'Lecture 1: Introduction to CSS', 1, 66),
-(5, 'Lecture 2: CSS Syntax and Selectors', 2, 66),
-(6, 'Lecture 3: CSS How To...', 3, 66),
-(7, 'Lecture 1: Introduction to JavaScript', 1, 67),
-(8, 'Lecture 2: JavaScript Where To', 2, 67),
-(9, 'Lecture 3: JavaScript Output', 3, 67),
-(10, 'Lecture 1: Introduction to SQL', 1, 68),
-(11, 'Lecture 2: SQL Syntax', 2, 68),
-(12, 'Lecture 3: SQL SELECT Statement', 3, 68),
-(13, 'Lecture 1: What is C?', 1, 69),
-(14, 'Lecture 2: Should you learn C programming?', 2, 69),
-(15, 'Lecture 3: What will you gain if you learn C?', 3, 69);
+(1, 'Lecture 1: Introduction to HTML5', 1, 68),
+(2, 'Lecture 2: HTML5 Paragraph', 2, 68),
+(3, 'Lecture 1: Introduction to CSS3', 1, 69),
+(4, 'Lecture 2: How to write CSS Style Sheet', 2, 69);
 
 -- --------------------------------------------------------
 
@@ -131,9 +124,11 @@ CREATE TABLE `table_top_category` (
 --
 
 INSERT INTO `table_top_category` (`top_category_id`, `top_category_name`, `top_category_order`) VALUES
-(27, 'Database', 1),
-(28, 'Website', 2),
-(29, 'Programming', 3);
+(33, 'Programming', 1),
+(34, 'Website', 2),
+(35, 'Network', 3),
+(36, 'Database', 4),
+(37, 'Blockchain', 5);
 
 --
 -- Indexes for dumped tables
@@ -189,19 +184,19 @@ ALTER TABLE `table_category`
 -- AUTO_INCREMENT for table `table_lecture`
 --
 ALTER TABLE `table_lecture`
-  MODIFY `lecture_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `lecture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `table_sub_category`
 --
 ALTER TABLE `table_sub_category`
-  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `table_top_category`
 --
 ALTER TABLE `table_top_category`
-  MODIFY `top_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `top_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

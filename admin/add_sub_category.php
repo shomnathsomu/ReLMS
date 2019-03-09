@@ -61,15 +61,7 @@
 				<div class="panel-body">
 					<?php echo $msg; ?>
 					<form id="form_sub_category" class="form-horizontal" rol="form" method="post" action='<?php echo $_SERVER["PHP_SELF"]; ?>'>
-						<input type="hidden" name="sub_category_id" value="<?php echo $sub_category_id; ?>">
-						<div style="margin-bottom: 25px;" class="input-group">
-							<span class="input-group-addon">Sub Category Name</span>
-							<input id="text_sub_category_name" type="text" class="form-control" name="text_sub_category_name" value="<?php echo $sub_category_name; ?>">
-						</div> 
-						<div style="margin-bottom: 25px;" class="input-group">
-							<span class="input-group-addon">Sub Category Order</span>
-							<input id="text_sub_category_order" type="text" class="form-control" name="text_sub_category_order" value="<?php echo $sub_category_order; ?>">
-						</div> 
+						<input type="hidden" name="sub_category_id" value="<?php echo $sub_category_id; ?>"> 
 						<div style="margin-bottom: 25px;" class="input-group">
 							<span class="input-group-addon">Category</span>
 							<select id="category_id" name="category_id" class="form-control">
@@ -87,6 +79,14 @@
 								 ?>
 							</select>
 						</div> 
+						<div style="margin-bottom: 25px;" class="input-group">
+							<span class="input-group-addon">Sub Category Name</span>
+							<input id="text_sub_category_name" type="text" class="form-control" name="text_sub_category_name" value="<?php echo $sub_category_name; ?>">
+						</div> 
+						<div style="margin-bottom: 25px;" class="input-group">
+							<span class="input-group-addon">Sub Category Order</span>
+							<input id="text_sub_category_order" type="text" class="form-control" name="text_sub_category_order" value="<?php echo $sub_category_order; ?>">
+						</div>
 						<div style="margin-top: 10px;" class="form-group">
 							<div class="col-sm-12 controls">
 								<?php 

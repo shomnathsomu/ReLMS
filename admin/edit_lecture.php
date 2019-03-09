@@ -4,17 +4,32 @@
 		header("Location:login.php");
 	}
 	include "../connection.php";
-	$msg = "";
+    $msg = "";
+    $lecture_id = "";
+    $lecture_content = "";
+    $lecture_order = "";
+    $sub_category_id = "";
+    if(isset($_GET["edit_id"])){
+        $qedit = mysqli_query($con, "select * from table_lecture where lecture_id='".mres($con, $_GET["edit_id"])."'");
+        while($row=mysqli_fetch_array($qedit, MYSQLI_ASSOC)){
+            $lecture_id = $row["lecture_id"];
+            $lecture_content = $row["lecture_content"];
+            $lecture_order = $row["lecture_order"];
+            $sub_category_id = $row["sub_category_id"];
+        }
+    }
 	if(isset($_POST["btn_save"])){
+        $lecture_id = mres($con, $_POST["text_lecture_id"]);
 		$lecture_order = mres($con, $_POST["text_lecture_order"]);
 		$sub_category_id = mres($con, $_POST["sub_category_id"]);
 		$editor = mres($con, $_POST["editor"]);
-		$qe = mysqli_query($con, "insert into table_lecture values('', '".$editor."', '".$lecture_order."', '".$sub_category_id."')");
+		$qe = mysqli_query($con, "update table_lecture set lecture_content='".$editor."', lecture_order='".$lecture_order."', sub_category_id='".$sub_category_id."' where lecture_id='".$lecture_id."'");
 		if($qe){
-			$msg = '<div id="login-alert" class="alert alert-success col-sm-12">Success!! Data is inserted.</div>';
+            header("Location:manage_lecture.php");
+			$msg = '<div id="login-alert" class="alert alert-success col-sm-12">Success!! Data is updated.</div>';
 		}
 		else{
-			$msg = '<div id="login-alert" class="alert alert-danger col-sm-12">Fail!! Data is not inserted.</div>';
+			$msg = '<div id="login-alert" class="alert alert-danger col-sm-12">Fail!! Data is not updated.</div>';
 		}
 	}
  ?>
@@ -28,13 +43,13 @@
 		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" style="padding-right: 0px;">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div class="panel-title">Add New Lecture</div>
+					<div class="panel-title">Edit Lecture</div>
 				</div>
 
 				<div class="panel-body">
 				<?php echo $msg; ?>
 					<form id="form_lecture" class="form-horizontal" rol="form" method="post" action='<?php echo $_SERVER["PHP_SELF"]; ?>'>
-						<input type="hidden" name="text_lecture_id">
+						<input type="hidden" name="text_lecture_id" value='<?php echo $lecture_id; ?>'>
 						<div style="margin-bottom: 25px;" class="input-group">
 							<span class="input-group-addon">Sub Category</span>
 							<select id="sub_category_id" name="sub_category_id" class="form-control">
@@ -42,23 +57,28 @@
 								<?php 
 									$qtc = mysqli_query($con, "select * from table_sub_category order by sub_category_order desc");
 									while ($row = $qtc->fetch_assoc()) {
-										echo '<option value="'.$row["sub_category_id"].'">'.$row["sub_category_name"].'</option>';
+                                        if($row["sub_category_id"] == $sub_category_id){
+                                            echo '<option value="'.$row["sub_category_id"].'" selected>'.$row["sub_category_name"].'</option>';
+                                        }
+                                        else{
+                                            echo '<option value="'.$row["sub_category_id"].'">'.$row["sub_category_name"].'</option>';
+                                        }
 									}
 								 ?>
 							</select>
 						</div> 
 						<div style="margin-bottom: 25px;" class="input-group">
 							<span class="input-group-addon">Lecture Order</span>
-							<input id="text_lecture_order" type="text" class="form-control" name="text_lecture_order">
+							<input id="text_lecture_order" type="text" class="form-control" name="text_lecture_order" value='<?php echo $lecture_order; ?>'>
 						</div> 
 						<div style="margin-bottom: 25px;" class="input-group">
 							Lecture Content<br/>
-							<textarea class="form-control ckeditor" name="editor" id="editor"></textarea>
+							<textarea class="form-control ckeditor" name="editor" id="editor"><?php echo $lecture_content; ?></textarea>
 						</div> 
 						<div style="margin-top: 10px;" class="form-group">
 							<div class="col-sm-12 controls">
 								<?php 
-									echo '<input type="submit" id="btn_save" name="btn_save" class="btn btn-info btn-block btn-large" value="Save">';
+									echo '<input type="submit" id="btn_save" name="btn_save" class="btn btn-info btn-block btn-large" value="Edit">';
 								 ?>
 							</div>
 						</div>
