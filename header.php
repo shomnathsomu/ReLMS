@@ -42,8 +42,8 @@
 						</ul>
 
 						<ul class="nav navbar-nav pull-right">
-							<li><a href="index.php">Register</a></li>
-							<li><a href="index.php">Login</a></li>
+							<li><a href="register.php">Register</a></li>
+							<li><a href="login.php">Login</a></li>
 						</ul>
 					</div>
 				</nav>
