@@ -1,7 +1,19 @@
 <?php 
     include "connection.php";
+    $msg = "";
     if(isset($_POST["btn_register"])){
-        echo "hello";
+        $qr = mysqli_query($con, "select * from table_user where email='".mres($con, $_POST["email"])."'");
+        if(mysqli_num_rows($qr)>0){
+            $msg = '<div id="login-alert" class="alert alert-danger col-sm-12">This Email is already existed.</div>';
+        }
+        else{
+            $code = rand(1000,9999).rand(1000,9999);
+            $qi = mysqli_query($con, "insert into table_user values('', '".mres($con, $_POST["username"])."', '".mres($con, $_POST["email"])."', '".$code."', '".mres($con, md5($_POST["password"]))."')");
+            $send = mail(mres($con, $_POST["email"]), "From elearning.com", "This is email verification code: ".$code);
+            if(($qi == true) && ($send == true)){
+                $msg = '<div id="login-alert" class="alert alert-success col-sm-12">Your registration is successful!! Please check your mail to verify.</div>';
+            }
+        }
     }
  ?>
 <?php include"header.php"; ?>
@@ -11,12 +23,12 @@
             <div style="margin-top: 50px;" class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                 
                 <!-- username panel starts here -->
-                <div class="panel panel-info" style='display:<?php echo $form_username; ?>'>
+                <div class="panel panel-info">
+                <?php echo $msg; ?>
                     <div class="panel-heading">
                         <div class="panel-title">Registration</div>
                     </div>
                     <div class="panel-body">
-                        <?php echo $msg_username; ?>
                         <form id="form_register" class="form-horizontal" rol="form" method="post" action='<?php echo $_SERVER["PHP_SELF"]; ?>'>
                             <div style="margin-bottom: 25px;" class="input-group">
                                 <span class="input-group-addon">Username</span>
@@ -72,7 +84,7 @@
                         e.preventDefault();
                     }
                     if ($('#email').val() != $('#email_confirm').val()) {
-                        $('#msg').html("Sorry! Email and confirm email are not the same")
+                        $('#msg').html("Sorry! Email and Confirmation Email are not the same.")
                         e.preventDefault();
                     }
                     else {
