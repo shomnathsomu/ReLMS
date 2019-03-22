@@ -42,8 +42,21 @@
 						</ul>
 
 						<ul class="nav navbar-nav pull-right">
-							<li><a href="register.php">Register</a></li>
-							<li><a href="login.php">Login</a></li>
+							<?php
+								if(!isset($_SESSION["user_id"])){
+									echo '<li><a href="register.php">Register</a></li>';
+									echo '<li><a href="login.php">Login</a></li>';
+								}
+								else{
+									echo '<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">'.$_SESSION["user_name"].'<span class="caret"></span></a>';
+									echo '<ul class="dropdown-menu">';
+										echo '<li><a href="change_username.php">Change Username</a></li>';
+										echo '<li><a href="change_password.php">Change Password</a></li>';
+										echo '<li><a href="change_email.php">Change Email</a></li>';
+									echo '</ul></li>';
+									echo '<li><a href="logout.php">logout</a></li>';
+								}
+							?>
 						</ul>
 					</div>
 				</nav>

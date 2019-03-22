@@ -1,6 +1,9 @@
 <?php 
+	session_start();
+	if(!isset($_SESSION["user_id"])){
+		header("location:login.php");
+	}
 	include "connection.php";
-
 	$id="";
 	$category_name="";
 	if (isset($_GET["id"])) {
@@ -8,6 +11,12 @@
 	}
 	else {
 		header("Location:index.php");
+	}
+	if(isset($_GET["id"]) && isset($_GET["sub_category_id"])){
+		$qs = mysqli_query($con, "select * from table_study where category_id = '".mres($con, $_GET["id"])."' and sub_category_id = '".mres($con, $_GET["sub_category_id"])."'");
+		if(mysqli_num_rows($qs) == 0){
+			$qi = mysqli_query($con, "insert into table_study values('', '".mres($con, $_SESSION["user_id"])."', '".mres($con, $_GET["id"])."', '".mres($con, $_GET["sub_category_id"])."')");
+		}
 	}
  ?>
 <?php include"header.php"; ?>
@@ -31,6 +40,7 @@
 					while ($row = $ql->fetch_assoc()) {
 						echo '<li><a href="?id='.$id.'&sub_category_id='.$row["sub_category_id"].'">'.$row["sub_category_name"].'</a></li>';
 					}
+					echo '<li><a href="exam.php?id='.$id.'">Exam</a></li>';
 				?>
 			</ul>
 		</div>

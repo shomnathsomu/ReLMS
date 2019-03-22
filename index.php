@@ -1,5 +1,12 @@
 <?php 
+	session_start();
 	include "connection.php";
+	if(isset($_SESSION["user_name"])){
+		$qu = mysqli_query($con, "select * from table_user where user_name='".mres($con, $_SESSION["user_name"])."'");
+		$row = mysqli_fetch_array($qu, MYSQL_ASSOC);
+		$_SESSION["user_id"] = $row["user_id"];
+		$_SESSION["user_name"] = $row["user_name"];
+	}
  ?>
 <?php include"header.php"; ?>
 
