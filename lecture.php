@@ -40,7 +40,7 @@
 					while ($row = $ql->fetch_assoc()) {
 						echo '<li><a href="?id='.$id.'&sub_category_id='.$row["sub_category_id"].'">'.$row["sub_category_name"].'</a></li>';
 					}
-					echo '<li><a href="exam.php?id='.$id.'">Exam</a></li>';
+					echo '<li><a href="exam.php?exam_id='.$id.'">Exam</a></li>';
 				?>
 			</ul>
 		</div>
