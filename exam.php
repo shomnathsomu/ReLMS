@@ -31,8 +31,36 @@
 			</ul>
 		</div>
 		<div class="col-lg-9 col-md-9">
+			<?php
+				if(isset($_POST["btn_exam"])){
+					$total = 0;
+					echo "<h3>Result</h3>";
+					$count = 0;
+					$qa = mysqli_query($con, "select * from table_exam where category_id='".$_GET["exam_id"]."'");
+					echo '<table class="table table-bordered table-hover">';
+					echo '<thead><tr><th>#</th><th>Your Answer</th><th>Correct Answer</th><th>Result</th></tr></thead>';
+					echo '<tbody>';
+					while($row = mysqli_fetch_array($qa, MYSQLI_ASSOC)) { 
+						$count++;
+						if($_POST["r_".$count] == $row["answer"]){
+							$total++;
+							echo "<tr class='success'><td>".$count."</td><td>".$_POST["r_".$count]."</td><td>".$row["answer"]."<td><span class='glyphicon glyphicon-ok text-success' aria-hidden='true'></span> </td></tr>";
+						}
+						else{
+							echo "<tr class='danger'><td>".$count."</td><td>".$_POST["r_".$count]."</td><td>".$row["answer"]."<td><span class='glyphicon glyphicon-remove text-danger' aria-hidden='true'></span> </td></tr>";
+						}
+					}
+					echo '</tbody></table>';
+					if (($total/$count) >= 0.5) {
+						echo '<div class="alert alert-success"><h3>You have passed</h3></div>';
+					}
+					else{
+						echo '<div class="alert alert-danger"><h3>You have failed!! <small>You must correct at least 50%</small></h3></div>';
+					}
+				}
+			 ?>
 			<h3>Examination</h3>
-            <form id="form_exam" action='<?php echo $_SERVER["PHP_SELF"]; ?>' method="post">
+            <form id="form_exam" action='<?php echo $_SERVER["PHP_SELF"]."?exam_id=".$exam_id; ?>' method="post">
                 <?php
                     $ql = mysqli_query($con, "select * from table_exam where category_id='".$exam_id."'");
                     $count = 0;

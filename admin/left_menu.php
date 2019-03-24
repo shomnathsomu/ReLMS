@@ -20,6 +20,6 @@
 </ul>
 <ul class="nav nav-pills nav-stacked">
 	<li class="active actived"><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Exams</a></li>
-	<li><a href="add_exam.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Exam</a></li>
-	<li><a href="manage_exam.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Manage Exam</a></li>
+	<li><a href="add_exam.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Question</a></li>
+	<li><a href="manage_exam.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Manage Question</a></li>
 </ul>
