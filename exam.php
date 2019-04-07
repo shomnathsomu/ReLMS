@@ -37,22 +37,22 @@
 					echo "<h3>Result</h3>";
 					$count = 0;
 					$qa = mysqli_query($con, "select * from table_exam where category_id='".$_GET["exam_id"]."'");
-					echo '<table class="table table-bordered table-hover">';
-					echo '<thead><tr><th>#</th><th>Your Answer</th><th>Correct Answer</th><th>Result</th></tr></thead>';
+					echo '<table class="table table-bordered table-hover text-center">';
+					echo '<thead><tr><th class="text-center">#</th><th class="text-center">Your Answer</th><th class="text-center">Correct Answer</th><th class="text-center">Result</th></tr></thead>';
 					echo '<tbody>';
 					while($row = mysqli_fetch_array($qa, MYSQLI_ASSOC)) { 
 						$count++;
 						if($_POST["r_".$count] == $row["answer"]){
 							$total++;
-							echo "<tr class='success'><td>".$count."</td><td>".$_POST["r_".$count]."</td><td>".$row["answer"]."<td><span class='glyphicon glyphicon-ok text-success' aria-hidden='true'></span> </td></tr>";
+							echo "<tr class='success'><td>".$count."</td><td>".$_POST["r_".$count]."</td><td>".$row["answer"]."<td><span class='glyphicon glyphicon-ok text-success' aria-hidden='true'></span></td></tr>";
 						}
 						else{
-							echo "<tr class='danger'><td>".$count."</td><td>".$_POST["r_".$count]."</td><td>".$row["answer"]."<td><span class='glyphicon glyphicon-remove text-danger' aria-hidden='true'></span> </td></tr>";
+							echo "<tr class='danger'><td>".$count."</td><td>".$_POST["r_".$count]."</td><td>".$row["answer"]."<td><span class='glyphicon glyphicon-remove text-danger' aria-hidden='true'></span></td></tr>";
 						}
 					}
 					echo '</tbody></table>';
 					if (($total/$count) >= 0.5) {
-						echo '<div class="alert alert-success"><h3>You have passed</h3></div>';
+						echo '<div class="alert alert-success"><h3>You have passed. <small>You have given '.$total.' correct answers.</small></h3></div>';
 					}
 					else{
 						echo '<div class="alert alert-danger"><h3>You have failed!! <small>You must correct at least 50%</small></h3></div>';

@@ -31,7 +31,7 @@
 							$rc = mysqli_fetch_array($qc, MYSQLI_NUM);
 							echo "<h4>".$rc[0]."</h4>";
 							echo "<img src='images/lectures/".$rc[1]."' class='img-responsive' style='display: block; margin-left: auto; margin-right: auto; padding-bottom: 15px; height: 200px; width: 150px;' />";
-						 ?>
+						?>
 					</a>
 				</li>
 
@@ -46,6 +46,7 @@
 		</div>
 		<div class="col-lg-9 col-md-9">
 			<?php
+				echo '<a href="generate-lecture-pdf.php?pdf_id='.$id.'" class="btn btn-success">Download Lectures PDF</a>';
 				if(isset($_GET["sub_category_id"])){
 					$ql = mysqli_query($con, "select * from table_lecture where sub_category_id='".$_GET["sub_category_id"]."'");
 				}else{
